@@ -59,6 +59,38 @@ public class LowestCommonAncestorTEST {
         
 	}
 	
+	@Test
+	public void testForTreeSize1(){
+		LowestCommonAncestor tree = new LowestCommonAncestor();
+		tree.root = new Node(1);
+		assertEquals("LCA(1,1)", 1,tree.findLCA(1, 1).data);
+		assertNull("LCA(1,0)",tree.findLCA(1, 0));
+	
+	
+	}
+
+	@Test
+	public void testForNonExitingNodes(){
+		LowestCommonAncestor tree = new LowestCommonAncestor();
+		tree.root = new Node(4);
+        tree.root.left = new Node(8);
+        tree.root.right = new Node(9);
+        tree.root.left.left = new Node(12);
+        tree.root.left.right = new Node(13);
+        tree.root.right.left = new Node(17);
+        tree.root.right.right = new Node(21);
+        
+        assertEquals("LCA(12,13)",8,tree.findLCA(12, 13).data);
+        assertEquals("LCA(17,21)",9,tree.findLCA(17, 21).data);
+        assertEquals("LCA(13,21)",4,tree.findLCA(13, 21).data);
+        
+        assertNull("LCA(13,44)",tree.findLCA(13, 44));
+        
+		
+		
+	}
+	
+	
 	
 	
 	
