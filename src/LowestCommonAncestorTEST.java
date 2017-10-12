@@ -8,7 +8,7 @@ public class LowestCommonAncestorTEST {
 	@Test
 	public void testForEmptyTree(){
 		LowestCommonAncestor tree = new LowestCommonAncestor();
-		assertEquals("LCA(Empty)", -1,tree.findLCA(0, 0).data);	
+		assertNull("LCA(Empty)",tree.findLCA(0, 0));
 	}
 	
 	@Test

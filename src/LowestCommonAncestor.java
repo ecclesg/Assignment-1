@@ -15,9 +15,11 @@ public class LowestCommonAncestor
     //Root of the Binary Tree
     Node root;
     
+    
  
     Node findLCA(int n1, int n2)
     {
+    
         return findLCA(root, n1, n2);
     }
  
@@ -29,6 +31,7 @@ public class LowestCommonAncestor
         // Base case
         if (node == null)
             return null;
+        
  
         // If either n1 or n2 matches with root's key, report
         // the presence by returning root (Note that if a key is
