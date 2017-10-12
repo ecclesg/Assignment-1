@@ -9,17 +9,18 @@ class Node
     int data;
     Node left, right;
  
-    public Node(int item)
+    Node(int item)
     {
         data = item;
         left = right = null;
     }
 }
  
-public class BinaryTree
+public class LowestCommonAncestor
 {
     //Root of the Binary Tree
     Node root;
+    
  
     Node findLCA(int n1, int n2)
     {
@@ -58,7 +59,7 @@ public class BinaryTree
     /* Driver program to test above functions */
     public static void main(String args[])
     {
-        BinaryTree tree = new BinaryTree();
+    	LowestCommonAncestor tree = new LowestCommonAncestor();
         tree.root = new Node(1);
         tree.root.left = new Node(2);
         tree.root.right = new Node(3);
@@ -76,3 +77,5 @@ public class BinaryTree
                             tree.findLCA(2, 4).data);
     }
 }
+
+//Class sourced from http://www.geeksforgeeks.org/lowest-common-ancestor-binary-tree-set-1/
