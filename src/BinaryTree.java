@@ -1,224 +1,78 @@
-public class BinaryTree {
 
-	Node root;
-
-	public void addNode(int key, String name) {
-
-		// Create a new Node and initialize it
-
-		Node newNode = new Node(key, name);
-
-		// If there is no root this becomes root
-
-		if (root == null) {
-
-			root = newNode;
-
-		} else {
-
-			// Set root as the Node we will start
-			// with as we traverse the tree
-
-			Node focusNode = root;
-
-			// Future parent for our new Node
-
-			Node parent;
-
-			while (true) {
-
-				// root is the top parent so we start
-				// there
-
-				parent = focusNode;
-
-				// Check if the new node should go on
-				// the left side of the parent node
-
-				if (key < focusNode.key) {
-
-					// Switch focus to the left child
-
-					focusNode = focusNode.leftChild;
-
-					// If the left child has no children
-
-					if (focusNode == null) {
-
-						// then place the new node on the left of it
-
-						parent.leftChild = newNode;
-						return; // All Done
-
-					}
-
-				} else { // If we get here put the node on the right
-
-					focusNode = focusNode.rightChild;
-
-					// If the right child has no children
-
-					if (focusNode == null) {
-
-						// then place the new node on the right of it
-
-						parent.rightChild = newNode;
-						return; // All Done
-
-					}
-
-				}
-
-			}
-		}
-
-	}
-
-	// All nodes are visited in ascending order
-	// Recursion is used to go to one node and
-	// then go to its child nodes and so forth
-
-	public void inOrderTraverseTree(Node focusNode) {
-
-		if (focusNode != null) {
-
-			// Traverse the left node
-
-			inOrderTraverseTree(focusNode.leftChild);
-
-			// Visit the currently focused on node
-
-			System.out.println(focusNode);
-
-			// Traverse the right node
-
-			inOrderTraverseTree(focusNode.rightChild);
-
-		}
-
-	}
-
-	public void preorderTraverseTree(Node focusNode) {
-
-		if (focusNode != null) {
-
-			System.out.println(focusNode);
-
-			preorderTraverseTree(focusNode.leftChild);
-			preorderTraverseTree(focusNode.rightChild);
-
-		}
-
-	}
-
-	public void postOrderTraverseTree(Node focusNode) {
-
-		if (focusNode != null) {
-
-			postOrderTraverseTree(focusNode.leftChild);
-			postOrderTraverseTree(focusNode.rightChild);
-
-			System.out.println(focusNode);
-
-		}
-
-	}
-
-	public Node findNode(int key) {
-
-		// Start at the top of the tree
-
-		Node focusNode = root;
-
-		// While we haven't found the Node
-		// keep looking
-
-		while (focusNode.key != key) {
-
-			// If we should search to the left
-
-			if (key < focusNode.key) {
-
-				// Shift the focus Node to the left child
-
-				focusNode = focusNode.leftChild;
-
-			} else {
-
-				// Shift the focus Node to the right child
-
-				focusNode = focusNode.rightChild;
-
-			}
-
-			// The node wasn't found
-
-			if (focusNode == null)
-				return null;
-
-		}
-
-		return focusNode;
-
-	}
-
-public static void main(String[] args) {
-
-		BinaryTree theTree = new BinaryTree();
-
-		theTree.addNode(50, "Boss");
-
-		theTree.addNode(25, "Vice President");
-
-		theTree.addNode(15, "Office Manager");
-
-		theTree.addNode(30, "Secretary");
-
-		theTree.addNode(75, "Sales Manager");
-
-		theTree.addNode(85, "Salesman 1");
-
-		// Different ways to traverse binary trees
-
-		// theTree.inOrderTraverseTree(theTree.root);
-
-		// theTree.preorderTraverseTree(theTree.root);
-
-		// theTree.postOrderTraverseTree(theTree.root);
-
-		// Find the node with key 75
-
-		System.out.println("\nNode with the key 75");
-
-		System.out.println(theTree.findNode(75));
-
+//Java implementation to find lowest common ancestor of
+// n1 and n2 using one traversal of binary tree
+ 
+/* Class containing left and right child of current
+ node and key value*/
+class Node
+{
+    int data;
+    Node left, right;
+ 
+    public Node(int item)
+    {
+        data = item;
+        left = right = null;
+    }
 }
-}
-
-class Node {
-
-	int key;
-	String name;
-
-	Node leftChild;
-	Node rightChild;
-
-	Node(int key, String name) {
-
-		this.key = key;
-		this.name = name;
-
-	}
-
-	public String toString() {
-
-		return name + " has the key " + key;
-
-		/*
-		 * return name + " has the key " + key + "\nLeft Child: " + leftChild +
-		 * "\nRight Child: " + rightChild + "\n";
-		 */
-
-	}
-
+ 
+public class BinaryTree
+{
+    //Root of the Binary Tree
+    Node root;
+ 
+    Node findLCA(int n1, int n2)
+    {
+        return findLCA(root, n1, n2);
+    }
+ 
+    // This function returns pointer to LCA of two given
+    // values n1 and n2. This function assumes that n1 and
+    // n2 are present in Binary Tree
+    Node findLCA(Node node, int n1, int n2)
+    {
+        // Base case
+        if (node == null)
+            return null;
+ 
+        // If either n1 or n2 matches with root's key, report
+        // the presence by returning root (Note that if a key is
+        // ancestor of other, then the ancestor key becomes LCA
+        if (node.data == n1 || node.data == n2)
+            return node;
+ 
+        // Look for keys in left and right subtrees
+        Node left_lca = findLCA(node.left, n1, n2);
+        Node right_lca = findLCA(node.right, n1, n2);
+ 
+        // If both of the above calls return Non-NULL, then one key
+        // is present in once subtree and other is present in other,
+        // So this node is the LCA
+        if (left_lca!=null && right_lca!=null)
+            return node;
+ 
+        // Otherwise check if left subtree or right subtree is LCA
+        return (left_lca != null) ? left_lca : right_lca;
+    }
+ 
+    /* Driver program to test above functions */
+    public static void main(String args[])
+    {
+        BinaryTree tree = new BinaryTree();
+        tree.root = new Node(1);
+        tree.root.left = new Node(2);
+        tree.root.right = new Node(3);
+        tree.root.left.left = new Node(4);
+        tree.root.left.right = new Node(5);
+        tree.root.right.left = new Node(6);
+        tree.root.right.right = new Node(7);
+        System.out.println("LCA(4, 5) = " +
+                            tree.findLCA(4, 5).data);
+        System.out.println("LCA(4, 6) = " +
+                            tree.findLCA(4, 6).data);
+        System.out.println("LCA(3, 4) = " +
+                            tree.findLCA(3, 4).data);
+        System.out.println("LCA(2, 4) = " +
+                            tree.findLCA(2, 4).data);
+    }
 }
