@@ -6,16 +6,13 @@ public class LowestCommonAncestorTEST {
 	LowestCommonAncestor tree = new LowestCommonAncestor();
 	
 	@Test
-	public void testFindLCA(){
-		
-	
-		
-		
-		
+	public void testForEmptyTree(){
+		LowestCommonAncestor tree = new LowestCommonAncestor();
+		assertEquals("LCA(Empty)", -1,tree.findLCA(0, 0).data);	
 	}
 	
 	@Test
-	public void testFindLCAForTree15(){
+	public void testForTreeSize15(){
 		LowestCommonAncestor tree = new LowestCommonAncestor();
         tree.root = new Node(1);
         tree.root.left = new Node(2);
