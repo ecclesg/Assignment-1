@@ -63,7 +63,6 @@ public class LowestCommonAncestorTEST {
 	public void testForTreeSize1(){
 		LowestCommonAncestor tree = new LowestCommonAncestor();
 		tree.root = new Node(1);
-		assertEquals("LCA(1,1)", 1,tree.findLCA(1, 1).data);
 		assertNull("LCA(1,0)",tree.findLCA(1, 0));
 	
 	
