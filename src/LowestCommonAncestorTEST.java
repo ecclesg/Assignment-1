@@ -8,13 +8,13 @@ public class LowestCommonAncestorTEST {
 	
 	@Test
 	public void testForEmptyTree(){
-		LowestCommonAncestor2 treeEmpty = new LowestCommonAncestor2();
+		LowestCommonAncestor treeEmpty = new LowestCommonAncestor();
 		assertEquals("LCA(Empty)",-1,treeEmpty.findLCA(0, 0));
 	}
 	
 	@Test
 	public void testForTreeSize7(){
-		LowestCommonAncestor2 treeSize7 = new LowestCommonAncestor2();
+		LowestCommonAncestor treeSize7 = new LowestCommonAncestor();
 		treeSize7.root = new Node(1);
 		treeSize7.root.left = new Node(2);
 		treeSize7.root.right = new Node(3);
@@ -32,7 +32,7 @@ public class LowestCommonAncestorTEST {
 	
 	@Test
 	public void testForTreeSize15(){
-		LowestCommonAncestor2 treeSize15 = new LowestCommonAncestor2();
+		LowestCommonAncestor treeSize15 = new LowestCommonAncestor();
 		treeSize15.root = new Node(1);
 		treeSize15.root.left = new Node(2);
 		treeSize15.root.right = new Node(3);
@@ -59,14 +59,14 @@ public class LowestCommonAncestorTEST {
 	
 	@Test
 	public void testForTreeSize1(){
-		LowestCommonAncestor2 treeSize1 = new LowestCommonAncestor2();
+		LowestCommonAncestor treeSize1 = new LowestCommonAncestor();
 		treeSize1.root = new Node(1);
 		assertEquals("LCA(1,0)",-1,treeSize1.findLCA(1, 0));
 	}
 
 	@Test
 	public void testForNonExitingNodes(){
-		LowestCommonAncestor2 treeNonExistentNode = new LowestCommonAncestor2();
+		LowestCommonAncestor treeNonExistentNode = new LowestCommonAncestor();
 		treeNonExistentNode.root = new Node(4);
 		treeNonExistentNode.root.left = new Node(8);
 		treeNonExistentNode.root.right = new Node(9);
@@ -87,7 +87,7 @@ public class LowestCommonAncestorTEST {
 	
 	@Test
 	public void testWhenOneNodeIsAncestorOfOther(){
-		LowestCommonAncestor2 treeAncestorNode = new LowestCommonAncestor2();
+		LowestCommonAncestor treeAncestorNode = new LowestCommonAncestor();
 		treeAncestorNode.root = new Node(11);
 		treeAncestorNode.root.left = new Node(21);
 		treeAncestorNode.root.right = new Node(5);
@@ -109,7 +109,7 @@ public class LowestCommonAncestorTEST {
 	
 	@Test
 	public void testForALlSameNode(){
-		LowestCommonAncestor2 sameNode = new LowestCommonAncestor2();
+		LowestCommonAncestor sameNode = new LowestCommonAncestor();
 		sameNode.root = new Node(3);
 		sameNode.root.left = new Node(3);
 		sameNode.root.right = new Node(3);

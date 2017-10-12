@@ -32,7 +32,6 @@ public class LowestCommonAncestor
  
         int i;
         for (i = 0; i < path1.size() && i < path2.size(); i++) {
-          //  System.out.println(path1.get(i) + " " + path2.get(i));
             if (!path1.get(i).equals(path2.get(i)))
                 break;
         }
